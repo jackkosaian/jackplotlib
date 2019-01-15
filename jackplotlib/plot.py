@@ -6,7 +6,7 @@ from .subplots import *
 
 
 def plot_files(infiles, labels, xlabel=None, ylabel=None, separate_axes=False,
-               xtick_gran=1):
+               xtick_gran=None):
     """
     Parameters
     ----------
@@ -48,6 +48,7 @@ def plot_files(infiles, labels, xlabel=None, ylabel=None, separate_axes=False,
         else:
             ax_ = ax
         ax_.plot(x_vals, data, label=label)
-        ax_.set_xticks(list(range(0, len(data), xtick_gran)))
+        if xtick_gran:
+            ax_.set_xticks(list(range(0, len(data), xtick_gran)))
 
     return fig, ax
