@@ -31,6 +31,7 @@ def subplots(font_size=12, width_height=None, family='Times New Roman', subplot_
     # When we only have one plot, don't return an array.
     if len(ax) == 1:
         ax = ax[0]
+    else:
+        ax = ax.reshape(*subplot_dim)
 
     return fig, ax
-
