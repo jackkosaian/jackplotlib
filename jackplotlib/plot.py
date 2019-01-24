@@ -6,7 +6,7 @@ from .subplots import *
 
 
 def plot_files(infiles, labels, xlabel=None, ylabel=None, separate_axes=False,
-               xtick_gran=None):
+               xtick_gran=None, ax=None):
     """
     Parameters
     ----------
@@ -20,6 +20,8 @@ def plot_files(infiles, labels, xlabel=None, ylabel=None, separate_axes=False,
         Whether to plot data for these on separate axes.
     xtick_gran: int
         How many spaces between xticks.
+    ax: `matplotlib.pyplot.axes.SubplotBase`
+        THe axes to plot on.
 
     Returns
     -------
@@ -32,7 +34,10 @@ def plot_files(infiles, labels, xlabel=None, ylabel=None, separate_axes=False,
     else:
         subplot_dim = []
 
-    fig, ax = subplots(subplot_dim=subplot_dim)
+    if ax is None:
+        fig, ax = subplots(subplot_dim=subplot_dim)
+    else:
+        fig = None
 
     cur_ax = 0
     for fil, label in zip(infiles, labels):
@@ -43,7 +48,7 @@ def plot_files(infiles, labels, xlabel=None, ylabel=None, separate_axes=False,
         x_vals = np.arange(len(data))
 
         if separate_axes:
-            ax_ = ax[cur_ax]
+            ax_ = ax[0, cur_ax]
             cur_ax += 1
         else:
             ax_ = ax
