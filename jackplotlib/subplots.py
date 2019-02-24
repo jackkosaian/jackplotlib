@@ -3,9 +3,10 @@ __all__ = ["subplots"]
 import matplotlib.pyplot as plt
 
 
-def subplots(font_size=12, width_height=None, family='Times New Roman', subplot_dim=[]):
+def subplots(font_size=12, width_height=None, family='Times New Roman',
+             subplot_dim=[], **kwargs):
     plt.rc('font', family=family, size=font_size, weight='light')
-    fig, ax = plt.subplots(*subplot_dim)
+    fig, ax = plt.subplots(*subplot_dim, **kwargs)
 
     # Handle the case where we only have one plot
     if len(subplot_dim) == 0:
