@@ -8,6 +8,7 @@ import matplotlib as mpl
 # sequential with colorblind safe option set.
 color_map = {
     "black": {
+        2: ['#f0f0f0','#636363'],
         3: ['#f0f0f0','#bdbdbd','#636363'],
         4: ['#f7f7f7','#cccccc','#969696','#525252'],
         5: ['#f7f7f7','#cccccc','#969696','#636363','#252525'],
@@ -17,6 +18,7 @@ color_map = {
         9: ['#ffffff','#f0f0f0','#d9d9d9','#bdbdbd','#969696','#737373','#525252','#252525','#000000']
     },
     "blue": {
+        2: ['#deebf7','#3182bd'],
         3: ['#deebf7','#9ecae1','#3182bd'],
         4: ['#eff3ff','#bdd7e7','#6baed6','#2171b5'],
         5: ['#eff3ff','#bdd7e7','#6baed6','#3182bd','#08519c'],
@@ -26,6 +28,7 @@ color_map = {
         9: ['#f7fbff','#deebf7','#c6dbef','#9ecae1','#6baed6','#4292c6','#2171b5','#08519c','#08306b']
     },
     "green": {
+        2: ['#e5f5e0','#31a354'],
         3: ['#e5f5e0','#a1d99b','#31a354'],
         4: ['#edf8e9','#bae4b3','#74c476','#238b45'],
         5: ['#edf8e9','#bae4b3','#74c476','#31a354','#006d2c'],
@@ -35,6 +38,7 @@ color_map = {
         9: ['#f7fcf5','#e5f5e0','#c7e9c0','#a1d99b','#74c476','#41ab5d','#238b45','#006d2c','#00441b']
     },
     "orange": {
+        2: ['#fee6ce','#e6550d'],
         3: ['#fee6ce','#fdae6b','#e6550d'],
         4: ['#feedde','#fdbe85','#fd8d3c','#d94701'],
         5: ['#feedde','#fdbe85','#fd8d3c','#e6550d','#a63603'],
@@ -44,6 +48,7 @@ color_map = {
         9: ['#fff5eb','#fee6ce','#fdd0a2','#fdae6b','#fd8d3c','#f16913','#d94801','#a63603','#7f2704']
     },
     "purple": {
+        2: ['#efedf5','#756bb1'],
         3: ['#efedf5','#bcbddc','#756bb1'],
         4: ['#f2f0f7','#cbc9e2','#9e9ac8','#6a51a3'],
         5: ['#f2f0f7','#cbc9e2','#9e9ac8','#756bb1','#54278f'],
@@ -53,6 +58,7 @@ color_map = {
         9: ['#fcfbfd','#efedf5','#dadaeb','#bcbddc','#9e9ac8','#807dba','#6a51a3','#54278f','#3f007d']
     },
     "red": {
+        2: ['#fee0d2','#de2d26'],
         3: ['#fee0d2','#fc9272','#de2d26'],
         4: ['#fee5d9','#fcae91','#fb6a4a','#cb181d'],
         5: ['#fee5d9','#fcae91','#fb6a4a','#de2d26','#a50f15'],
