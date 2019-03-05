@@ -64,9 +64,12 @@ color_map = {
 }
 
 
-def set_color_wheel(color, num_modes):
+def set_color_wheel(color, num_modes, reverse=False):
     assert color in color_map, "Unrecognized color '{}'".format(color)
     min_color = min(color_map[color])
     max_color = max(color_map[color])
     assert num_modes in color_map[color], "Argument `num_modes` of {} is not within the valid range [{}, {}]".format(num_modes, min_color, max_color)
-    mpl.rcParams['axes.prop_cycle'] = cycler(color=color_map[color][num_modes])
+    colors = color_map[color][num_modes]
+    if reverse:
+        colors = reversed(colors)
+    mpl.rcParams['axes.prop_cycle'] = cycler(color=colors)
