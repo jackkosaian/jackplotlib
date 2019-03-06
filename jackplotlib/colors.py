@@ -1,4 +1,4 @@
-__all__ = ["set_color_wheel"]
+__all__ = ["set_color_wheel", "color", "set_color_wheel_qualitative"]
 
 
 from cycler import cycler
@@ -79,3 +79,25 @@ def set_color_wheel(color, num_modes, reverse=False):
     if reverse:
         colors = reversed(colors)
     mpl.rcParams['axes.prop_cycle'] = cycler(color=colors)
+
+
+def color(color, shade="dark"):
+    assert color in color_map, "Unrecognized color '{}'".format(color)
+    return color_map[color][3][_get_shade(shade)]
+
+
+def set_color_wheel_qualitative(shade="dark"):
+    colors = ["blue", "orange", "green", "purple", "red", "black"]
+    shade_idx = _get_shade(shade)
+    cycle_colors = [color_map[c][3][shade_idx] for c in colors]
+    mpl.rcParams['axes.prop_cycle'] = cycler(color=cycle_colors)
+
+
+def _get_shade(shade):
+    assert shade in ["dark", "medium", "light"], "Unrecognized shade '{}'".format(color)
+    if shade == "dark":
+        return 2
+    elif shade == "medium":
+        return 1
+    else:
+        return 0
