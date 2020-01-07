@@ -1,4 +1,4 @@
-__all__ = ["set_color_wheel", "color", "set_color_wheel_qualitative"]
+__all__ = ["set_color_wheel", "color", "color_rgb", "set_color_wheel_qualitative"]
 
 
 from cycler import cycler
@@ -70,6 +70,17 @@ color_map = {
 }
 
 
+def get_color_wheel(color, num_modes, reverse=False):
+    assert color in color_map, "Unrecognized color '{}'".format(color)
+    min_color = min(color_map[color])
+    max_color = max(color_map[color])
+    assert num_modes in color_map[color], "Argument `num_modes` of {} is not within the valid range [{}, {}]".format(num_modes, min_color, max_color)
+    colors = color_map[color][num_modes]
+    if reverse:
+        colors = reversed(colors)
+    return colors
+
+
 def set_color_wheel(color, num_modes, reverse=False):
     assert color in color_map, "Unrecognized color '{}'".format(color)
     min_color = min(color_map[color])
@@ -86,8 +97,11 @@ def color(color, shade="dark"):
     return color_map[color][3][_get_shade(shade)]
 
 
-def set_color_wheel_qualitative(shade="dark"):
+def set_color_wheel_qualitative(shade="dark", num=None):
     colors = ["blue", "orange", "green", "purple", "red", "black"]
+    if num is not None:
+        assert num <= 6
+        colors = colors[:num]
     shade_idx = _get_shade(shade)
     cycle_colors = [color_map[c][3][shade_idx] for c in colors]
     mpl.rcParams['axes.prop_cycle'] = cycler(color=cycle_colors)
@@ -101,3 +115,20 @@ def _get_shade(shade):
         return 1
     else:
         return 0
+
+
+def _hex_to_rgb(hex):
+    # Adapted from: https://gist.github.com/matthewkremer/3295567
+    hex = hex.lstrip('#')
+    hlen = len(hex)
+    return tuple(int(hex[i:i + hlen // 3], 16) for i in range(0, hlen, hlen // 3))
+
+
+def color_rgb(color_name, shade="dark", decimal=False):
+    hex_color = color(color_name, shade)
+    rgb_tuple = _hex_to_rgb(hex_color)
+
+    if decimal:
+        return tuple(x / 255 for x in rgb_tuple)
+
+    return rgb_tuple
