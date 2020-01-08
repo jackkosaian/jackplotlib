@@ -1,4 +1,5 @@
-__all__ = ["set_color_wheel", "color", "color_rgb", "set_color_wheel_qualitative"]
+__all__ = ["get_color_wheel", "set_color_wheel", "color", "color_rgb",
+           "set_color_wheel_qualitative"]
 
 
 from cycler import cycler
@@ -70,7 +71,16 @@ color_map = {
 }
 
 
-def get_color_wheel(color, num_modes, reverse=False):
+def get_color_wheel(color, num_modes, reverse=False, rgb=False, decimal=True):
+    """
+    Args:
+        color: (str) name of color to get
+        num_modes: (int) number of shades of `color` to get
+        reverse: (bool) whether to reverse the order of the colors
+        rgb: (bool) whether to return colors as tuples of RGB values
+        decimal: (bool) whether to return RGB colors as decimals. Only relevent
+                 if `rgb` is set to True.
+    """
     assert color in color_map, "Unrecognized color '{}'".format(color)
     min_color = min(color_map[color])
     max_color = max(color_map[color])
@@ -78,6 +88,10 @@ def get_color_wheel(color, num_modes, reverse=False):
     colors = color_map[color][num_modes]
     if reverse:
         colors = reversed(colors)
+
+    if rgb:
+        div_factor = 255. if decimal else 1.
+        colors = [tuple(y / div_factor for y in _hex_to_rgb(x)) for x in colors]
     return colors
 
 
