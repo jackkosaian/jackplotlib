@@ -3,7 +3,7 @@ __all__ = ["subplots"]
 import matplotlib.pyplot as plt
 
 
-def subplots(font_size=12, width_height=None, family='Times New Roman',
+def subplots(font_size=12, width_height=None, family='Arial',
              subplot_dim=[], **kwargs):
     plt.rc('font', family=family, size=font_size, weight='light')
     fig, ax = plt.subplots(*subplot_dim, **kwargs)
